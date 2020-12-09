@@ -3,14 +3,14 @@ const Signature = require('./lib/signature');
 
 let public_key = 'iXqVGhIwrC7SXy0wVGI6l7JqEvrhiM6MLAB8ASDYXg0WZuXTSNvm1RIXJgSznI4i'
 let secret_key = 'K3vHWEcQYQ8Oj0FHLaSzS6qvTunz3BV35W9FhMZn1SasmXw1k1q8lleuOKM8hrbw'
-let ts = Date.now()
+
 let signature = new Signature()
-signature.create(secret_key, ts)
+signature.create('', secret_key)
 .then(
-  sha256 => {
+  url => {
     let options = {
       'method': 'GET',
-      'url': `https://botapi.buytex.io/wallet/WalletList?ts=${ts}&signature=${sha256}`,
+      'url': `https://botapi.buytex.io/wallet/WalletList?${url}`,
       'headers': {
         'X-MBX-APIKEY': public_key
       }
